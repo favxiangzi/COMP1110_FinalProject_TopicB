@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# C++ build output
+main
+*.out
+*.o
+*.obj
+*.exe
+
+# Debug symbol bundles (macOS)
+*.dSYM/
+
+# VS Code local settings
+.vscode/
