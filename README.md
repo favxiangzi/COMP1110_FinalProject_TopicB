@@ -22,6 +22,7 @@ From the project root, compile with:
 
 ```bash
 g++ -std=c++17 -Wall -Wextra -pedantic -g main.cpp -o main
+# Windows (PowerShell): g++ -std=c++17 -Wall -Wextra -pedantic -g main.cpp -o main.exe
 ```
 
 ## Run
@@ -30,6 +31,7 @@ After building:
 
 ```bash
 ./main
+# Windows (PowerShell): .\main.exe
 ```
 
 ## Program Usage
