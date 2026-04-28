@@ -40,6 +40,25 @@ When the program starts:
 3. Review top-ranked routes and route details
 4. Choose whether to run again
 
+## Sample Test Cases
+
+The project includes sample tests in [tests/test_main.py](tests/test_main.py). Each case is documented with its purpose so the expected behavior is clear.
+
+| Test case | Purpose | What it checks |
+|---|---|---|
+| `test_build_graph_populates_expected_number_of_edges` | Confirms the sample transport network is built correctly | The graph contains the expected number of edges after setup |
+| `test_get_valid_stop_choice_retries_until_valid_input` | Confirms invalid stop inputs are rejected | Non-numeric and out-of-range values are retried until valid input is entered |
+| `test_get_weights_default_selection` | Confirms the default preset is correct | Option 1 returns the documented `35/40/25` split |
+| `test_get_weights_custom_selection` | Confirms custom weights are accepted | A valid custom set that sums to 100 is returned unchanged |
+| `test_compute_z_scores_prefers_better_route` | Confirms route ranking behavior | A route with better metrics receives a higher score |
+| `test_main_handles_same_start_and_destination` | Confirms the CLI handles a zero-distance trip | The program prints the same-start/same-destination message and does not fail |
+
+Run the tests with:
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
 ## Example Session (Short)
 
 ```text
