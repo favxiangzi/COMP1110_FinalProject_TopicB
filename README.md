@@ -5,8 +5,6 @@ A Python route recommendation program that finds possible paths between location
 - Travel time
 - Comfort
 
-This is a direct translation of the C++ implementation maintaining 100% feature and behavior parity.
-
 ## Project Structure
 
 - `main.py`: Main source file containing graph setup, route search, scoring, and CLI interaction
@@ -75,48 +73,22 @@ Enter starting stop number: 1
 Enter destination stop number: 13
 ```
 
-## C++ → Python Mapping
 
-| C++ | Python |
-|-----|--------|
-| `struct Edge` | `@dataclass Edge` |
-| `struct Route` | `@dataclass Route` |
-| `vector<string> stopNames` | Global list `STOP_NAMES` |
-| `vector<vector<Edge>> graph` | Global list `graph: List[List[Edge]]` |
-| `addUndirectedEdge()` | `add_undirected_edge()` |
-| `buildGraph()` | `build_graph()` |
-| `dfsAllRoutes()` | `dfs_all_routes()` |
-| `normalizeSmallerBetter()` | `normalize_smaller_better()` |
-| `normalizeLargerBetter()` | `normalize_larger_better()` |
-| `computeZScores()` | `compute_z_scores()` |
-| `printStops()` | `print_stops()` |
-| `getValidStopChoice()` | `get_valid_stop_choice()` |
-| `getWeights()` | `get_weights()` |
-| `printRouteDetails()` | `print_route_details()` |
-| `main()` | `main()` |
 
 ## Key Implementation Notes
 
-1. **Data Structures**: Dataclasses used instead of structs for cleaner code with type safety
-2. **Input Handling**: Python's `input()` replaces C++'s `cin`, with built-in exception handling for type conversion errors
-3. **List Operations**: Python lists replace C++ vectors; copying used where needed (e.g., in DFS backtracking)
-4. **Formatting**: `f-strings` and `.2f` format specifiers replicate C++'s `fixed` + `setprecision(2)`
-5. **String Handling**: Python's `.lower()` and `.strip()` replace C++'s `transform()` and stream operations
-6. **Sorting**: Lambda function replaces C++'s comparison functor
-
-## Differences from C++
-
-1. **Error Handling**: Python uses exceptions (`ValueError`) for invalid input instead of C++'s `cin.fail()`
-2. **No explicit type casting**: Python handles type conversions implicitly
-3. **Memory Management**: Python's automatic garbage collection vs. C++'s stack/heap management
-4. **Floating-point representation**: Minor precision differences possible due to Python vs. C++ floating-point implementations
+1. **Data Structures**: Dataclasses used for clean code with type safety
+2. **Input Handling**: Robust CLI input validation with retry loops for invalid values
+3. **Graph Representation**: Adjacency list using Python lists for efficient traversal
+4. **Formatting**: f-strings with `.2f` format specifiers for consistent decimal display
+5. **Sorting**: Lambda functions for flexible route ranking by score
 
 ## Verification
 
-The Python version maintains identical behavior to the C++ version:
-- Same graph topology (13 stops, identical edges)
-- Same DFS pathfinding algorithm
-- Same scoring algorithm (min/max normalization with weighted Z-score)
-- Same top-5 route display logic
-- Same input validation and user prompts
-- Same restart loop behavior
+The implementation correctly handles:
+- Graph topology (13 stops with weighted edges)
+- DFS pathfinding algorithm to locate all possible routes
+- Scoring algorithm using min/max normalization with weighted Z-scores
+- Top-5 route display logic
+- Input validation and user prompts
+- Restart loop behavior
